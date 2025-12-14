@@ -11,11 +11,14 @@ export function Footer() {
             <div className="container mx-auto px-4 py-8 max-w-7xl">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                     {/* Copyright */}
-                    <p className="text-sm text-muted-foreground text-center md:text-left">
-                        {isEnglish
-                            ? '© 2025 StudentMU. Built for Malaysian Students.'
-                            : '© 2025 StudentMU. 为马来西亚学生打造。'}
-                    </p>
+                    <div className="text-sm text-muted-foreground text-center md:text-left">
+                        <p>
+                            {isEnglish
+                                ? '© 2025 StudentMU. Built for Malaysian Students.'
+                                : '© 2025 StudentMU. 为马来西亚学生打造。'}
+                        </p>
+                        <p className="text-xs mt-1">Creator: LZC</p>
+                    </div>
 
                     {/* Links */}
                     <div className="flex items-center gap-6">
