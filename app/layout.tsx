@@ -16,8 +16,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StudentMU",
-  description: "A curated interest guide for Malaysian university students — covering skills, money, and campus life.",
+  title: "StudentMU — Everything University Doesn't Teach You",
+  description: "A curated guide to skills, money, and student life — built for Malaysian university students.",
+  openGraph: {
+    title: "StudentMU",
+    description: "Everything university doesn't teach you. Skills, money, and real student life.",
+    url: "https://3kpurpleorange.xyz",
+    siteName: "StudentMU",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "StudentMU",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function RootLayout({
