@@ -12,7 +12,7 @@ export interface DirectoryPillar {
     id: string;
     title: string;
     titleCN: string;
-    emoji: string;
+    iconName: string;
     description: string;
     descriptionCN: string;
 }
@@ -74,7 +74,7 @@ export const directoryPillars: DirectoryPillar[] = [
         id: "skills",
         title: "Future Proofing",
         titleCN: "未来技能",
-        emoji: "🚀",
+        iconName: "Zap",
         description: "Skills that matter beyond graduation",
         descriptionCN: "毕业后真正有用的技能",
     },
@@ -82,7 +82,7 @@ export const directoryPillars: DirectoryPillar[] = [
         id: "finance",
         title: "Money Moves",
         titleCN: "财务智慧",
-        emoji: "💰",
+        iconName: "TrendingUp",
         description: "Finance, investing, and side hustles",
         descriptionCN: "理财、投资和副业指南",
     },
@@ -90,7 +90,7 @@ export const directoryPillars: DirectoryPillar[] = [
         id: "lifestyle",
         title: "The Vibe",
         titleCN: "生活方式",
-        emoji: "✨",
+        iconName: "Coffee",
         description: "Student lifestyle and experiences",
         descriptionCN: "学生生活与体验",
     },
@@ -98,7 +98,7 @@ export const directoryPillars: DirectoryPillar[] = [
         id: "survival",
         title: "Survival Guide",
         titleCN: "生存指南",
-        emoji: "🎓",
+        iconName: "GraduationCap",
         description: "Campus life essentials",
         descriptionCN: "校园生活必备",
     },
