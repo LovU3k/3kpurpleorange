@@ -62,10 +62,10 @@ export function TypewriterText({ text, className = "", delay = 0, cursor }: Type
                                 {/* Blinking Cursor */}
                                 <motion.span
                                     initial={{ opacity: 0 }}
-                                    animate={{ opacity: [0, 1, 0, 1, 0, 1, 0] }}
+                                    animate={{ opacity: [0, 1, 0, 1, 0, 1, 1, 1, 0] }}
                                     transition={{
-                                        duration: 3,
-                                        times: [0, 0.15, 0.33, 0.5, 0.67, 0.85, 1],
+                                        duration: 5,
+                                        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9, 1],
                                         delay: delay + (text.length * 0.03)
                                     }}
                                     style={{ transition: "opacity 0s" }}

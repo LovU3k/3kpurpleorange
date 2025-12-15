@@ -32,7 +32,7 @@ export function Directory({ isEnglish }: DirectoryProps) {
                     {isEnglish ? "Explore by Category" : "分类浏览"}
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {directoryPillars.map((pillar) => {
                         const Icon = iconMap[pillar.iconName];
                         const colors = colorMap[pillar.iconName];

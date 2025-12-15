@@ -31,7 +31,7 @@ export function Hero({ isEnglish }: HeroProps) {
                         speed={isEnglish ? "fast" : "slow"}
                         triggerRadius={600}
                         maxDisplacement={40}
-                        className="text-5xl md:text-7xl font-bold tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
                     />
 
                     <TypewriterText
@@ -40,7 +40,7 @@ export function Hero({ isEnglish }: HeroProps) {
                             ? "A curated guide to skills, money, and student life — built for Malaysian students."
                             : "为马来西亚学生打造的技能、财务和生活指南。"}
                         delay={subtitleDelay}
-                        className="text-xl md:text-2xl text-muted-foreground max-w-3xl"
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground w-full max-w-full sm:max-w-2xl md:max-w-3xl px-4 break-words"
                     />
 
                     <Button size="lg" className="text-lg gap-2">
