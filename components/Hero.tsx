@@ -24,14 +24,14 @@ export function Hero({ isEnglish }: HeroProps) {
     return (
         <section className="w-full py-20 md:py-32 bg-background">
             <div className="container mx-auto px-4 max-w-5xl">
-                <div className="flex flex-col items-center text-center space-y-8">
+                <div className="flex flex-col items-center text-center space-y-6">
                     <RepellingText
                         key={isEnglish ? 'en' : 'cn'}
                         text={titleText}
                         speed={isEnglish ? "fast" : "slow"}
                         triggerRadius={600}
                         maxDisplacement={40}
-                        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+                        className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight pb-2 font-heading"
                     />
 
                     <TypewriterText
@@ -40,7 +40,7 @@ export function Hero({ isEnglish }: HeroProps) {
                             ? "A curated guide to skills, money, and student life — built for Malaysian students."
                             : "为马来西亚学生打造的技能、财务和生活指南。"}
                         delay={subtitleDelay}
-                        className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground w-full max-w-full sm:max-w-2xl md:max-w-3xl px-4 break-words"
+                        className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground w-full max-w-full sm:max-w-2xl md:max-w-3xl px-4 break-words"
                     />
 
                     <Button size="lg" className="text-lg gap-2">

@@ -25,7 +25,7 @@ export function Trending({ isEnglish }: TrendingProps) {
     return (
         <section className="w-full py-16 bg-background">
             <div className="container mx-auto px-4 max-w-7xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 font-heading">
                     {isEnglish ? "Trending Now" : "热门话题"}
                 </h2>
 

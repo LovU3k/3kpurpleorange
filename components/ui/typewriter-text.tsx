@@ -34,12 +34,29 @@ export function TypewriterText({ text, className = "", delay = 0, cursor }: Type
         }
     };
 
-    const chars = text.split("");
+    // Split by spaces and merge em dashes with following words
+    const rawWords = text.split(" ");
+    const words = rawWords.reduce((acc: string[], word, index) => {
+        // If this word is just an em dash and there's a next word, merge them
+        if ((word === "—" || word === "–") && index < rawWords.length - 1) {
+            return acc; // Skip this word, will be merged with next
+        }
+        // If previous word was an em dash, prepend it to current word
+        if (index > 0 && (rawWords[index - 1] === "—" || rawWords[index - 1] === "–")) {
+            acc.push(rawWords[index - 1] + word);
+        } else {
+            acc.push(word);
+        }
+        return acc;
+    }, []);
 
     // Default cursor: Solid Block (Notion/Brutalist style)
     const defaultCursor = (
         <span className="inline-block w-2.5 h-5 bg-foreground ml-1 align-middle mb-1" />
     );
+
+    // Calculate total character count for cursor timing
+    const totalChars = text.length;
 
     return (
         <div className="w-full flex justify-center -ml-8">
@@ -49,44 +66,28 @@ export function TypewriterText({ text, className = "", delay = 0, cursor }: Type
                 initial="hidden"
                 animate="visible"
             >
-                {chars.map((char, index) => {
-                    // Wrap the last 10 characters + cursor in a non-breaking container
-                    if (index === chars.length - 10) {
-                        return (
-                            <span key={`wrapper-${index}`} style={{ whiteSpace: "nowrap" }}>
-                                {chars.slice(index).map((c, i) => (
-                                    <motion.span key={`${index}-${i}`} variants={child}>
-                                        {c === " " ? "\u00A0" : c}
-                                    </motion.span>
-                                ))}
-                                {/* Blinking Cursor */}
-                                <motion.span
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: [0, 1, 0, 1, 0, 1, 1, 1, 0] }}
-                                    transition={{
-                                        duration: 5,
-                                        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9, 1],
-                                        delay: delay + (text.length * 0.03)
-                                    }}
-                                    style={{ transition: "opacity 0s" }}
-                                >
-                                    {cursor || defaultCursor}
-                                </motion.span>
-                            </span>
-                        );
-                    }
-
-                    // Skip characters that are part of the wrapped group
-                    if (index > chars.length - 10) {
-                        return null;
-                    }
-
-                    return (
-                        <motion.span key={index} variants={child}>
-                            {char === " " ? "\u00A0" : char}
-                        </motion.span>
-                    );
-                })}
+                {words.map((word, wordIndex) => (
+                    <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.25em]">
+                        {word.split("").map((char, charIndex) => (
+                            <motion.span key={charIndex} variants={child}>
+                                {char}
+                            </motion.span>
+                        ))}
+                    </span>
+                ))}
+                {/* Blinking Cursor */}
+                <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1, 0, 1, 0, 1, 1, 1, 0] }}
+                    transition={{
+                        duration: 5,
+                        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9, 1],
+                        delay: delay + (totalChars * 0.03)
+                    }}
+                    style={{ transition: "opacity 0s" }}
+                >
+                    {cursor || defaultCursor}
+                </motion.span>
             </motion.p>
         </div>
     );

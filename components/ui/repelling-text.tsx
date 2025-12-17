@@ -137,7 +137,21 @@ export function RepellingText({
     const mouseX = useMotionValue(Infinity);
     const mouseY = useMotionValue(Infinity);
 
-    const chars = text.split("");
+    // Split by spaces and merge em dashes with following words
+    const rawWords = text.split(" ");
+    const words = rawWords.reduce((acc: string[], word, index) => {
+        // If this word is just an em dash and there's a next word, merge them
+        if ((word === "—" || word === "–") && index < rawWords.length - 1) {
+            return acc; // Skip this word, will be merged with next
+        }
+        // If previous word was an em dash, prepend it to current word
+        if (index > 0 && (rawWords[index - 1] === "—" || rawWords[index - 1] === "–")) {
+            acc.push(rawWords[index - 1] + word);
+        } else {
+            acc.push(word);
+        }
+        return acc;
+    }, []);
 
     // Speed-based timing
     const speedMap = {
@@ -171,6 +185,9 @@ export function RepellingText({
         mouseY.set(Infinity);
     };
 
+    // Calculate global character index for stagger animation
+    let globalCharIndex = 0;
+
     return (
         <motion.h1
             ref={containerRef}
@@ -182,17 +199,24 @@ export function RepellingText({
             onMouseLeave={handleMouseLeave}
             style={{ cursor: "default" }}
         >
-            {chars.map((char, index) => (
-                <RepellingChar
-                    key={index}
-                    char={char}
-                    index={index}
-                    mouseX={mouseX}
-                    mouseY={mouseY}
-                    speed={speed}
-                    triggerRadius={triggerRadius}
-                    maxDisplacement={maxDisplacement}
-                />
+            {words.map((word, wordIndex) => (
+                <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.25em]">
+                    {word.split("").map((char, charIndex) => {
+                        const currentIndex = globalCharIndex++;
+                        return (
+                            <RepellingChar
+                                key={charIndex}
+                                char={char}
+                                index={currentIndex}
+                                mouseX={mouseX}
+                                mouseY={mouseY}
+                                speed={speed}
+                                triggerRadius={triggerRadius}
+                                maxDisplacement={maxDisplacement}
+                            />
+                        );
+                    })}
+                </span>
             ))}
         </motion.h1>
     );

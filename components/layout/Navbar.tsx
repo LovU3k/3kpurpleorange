@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/ModeToggle';
+import { AnimatedLogo } from '@/components/ui/animated-logo';
 import {
     Sheet,
     SheetContent,
@@ -13,7 +14,6 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet';
 import { Menu, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
 
 export function Navbar() {
     const { isEnglish, toggleLanguage } = useLanguage();
@@ -25,18 +25,9 @@ export function Navbar() {
                 {/* Logo/Brand */}
                 <Link
                     href="/"
-                    className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                    className="hover:opacity-80 transition-opacity"
                 >
-                    <Image
-                        src="/logo.svg"
-                        alt="StudentMU Logo"
-                        width={28}
-                        height={28}
-                        className="dark:invert"
-                    />
-                    <span className="text-xl font-bold font-space">
-                        {isEnglish ? 'StudentMU' : 'StudentMU'}
-                    </span>
+                    <AnimatedLogo />
                 </Link>
 
                 {/* Desktop Navigation - Hidden on Mobile */}
@@ -88,7 +79,7 @@ export function Navbar() {
                         <SheetContent side="right" className="flex flex-col h-full w-[240px] p-0">
                             {/* Header with Menu Title */}
                             <SheetHeader className="px-6 pt-6 pb-4 border-b text-left flex items-center">
-                                <SheetTitle className="text-xl font-bold font-space">
+                                <SheetTitle className="text-xl font-bold font-heading">
                                     {isEnglish ? 'Menu' : '菜单'}
                                 </SheetTitle>
                             </SheetHeader>
@@ -98,7 +89,7 @@ export function Navbar() {
                                 <Link
                                     href="/#directory"
                                     onClick={() => setOpen(false)}
-                                    className="text-lg font-medium hover:text-primary transition-colors flex items-center justify-between group font-space"
+                                    className="text-lg font-medium hover:text-primary transition-colors flex items-center justify-between group font-heading"
                                 >
                                     <span>{isEnglish ? 'Categories' : '分类'}</span>
                                     <ChevronRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -107,7 +98,7 @@ export function Navbar() {
                                 <Link
                                     href="/about"
                                     onClick={() => setOpen(false)}
-                                    className="text-lg font-medium hover:text-primary transition-colors flex items-center justify-between group font-space"
+                                    className="text-lg font-medium hover:text-primary transition-colors flex items-center justify-between group font-heading"
                                 >
                                     <span>{isEnglish ? 'About' : '关于'}</span>
                                     <ChevronRight className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" />
