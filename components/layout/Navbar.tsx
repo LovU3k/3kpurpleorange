@@ -13,6 +13,7 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet';
 import { Menu, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 export function Navbar() {
     const { isEnglish, toggleLanguage } = useLanguage();
@@ -24,9 +25,18 @@ export function Navbar() {
                 {/* Logo/Brand */}
                 <Link
                     href="/"
-                    className="text-xl font-bold hover:opacity-80 transition-opacity font-space"
+                    className="flex items-center gap-2 hover:opacity-80 transition-opacity"
                 >
-                    {isEnglish ? 'StudentMU' : 'StudentMU'}
+                    <Image
+                        src="/logo.svg"
+                        alt="StudentMU Logo"
+                        width={28}
+                        height={28}
+                        className="dark:invert"
+                    />
+                    <span className="text-xl font-bold font-space">
+                        {isEnglish ? 'StudentMU' : 'StudentMU'}
+                    </span>
                 </Link>
 
                 {/* Desktop Navigation - Hidden on Mobile */}
